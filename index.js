@@ -4,17 +4,18 @@ var pump = new datapump.Pump();
 pump
     .mixin(datapump.mixin.RestMixin)
     .from(pump.createBuffer())
-    .get('https://afd662d3.eu.ngrok.io/organization/pais', {
+    .get('https://afd662d3.eu.ngrok.io/organization/plaza', {
         "headers":{
             //Aca va el domain del workspace
             "wp":"basehcm"
         },
         "multipart": false,
         "query": {
-            //aca van los filtros
+            "cantidad":'{">":"2"}'
         }
     })
     .then(function(result) {
+        console.log(result);
         //Resultado de llamada a API
         for(let i in result.result){
             //Por cada resultado escribir en csv
